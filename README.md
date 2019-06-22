@@ -1,4 +1,4 @@
-##Usage
+## Usage
 --Build the application image
 ```docker build -t helloworldapi .```
 
@@ -17,8 +17,8 @@ CREATE TABLE username (username VARCHAR(20) PRIMARY KEY, dob DATE);
 
 `Application should be up at  localhost port 80`
 
-##Adding or updating entry
+##  Adding or updating entry
 `POST /localhost/hello/<username> { "dob" : "1985-01-20" }`
 
-##Getting username info
+## Getting username info
 `GET /localhost/hello/<username>`
