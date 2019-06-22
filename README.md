@@ -1,12 +1,12 @@
 ##Usage
 --Build the application image
-`docker build -t helloworldapi .`
+```docker build -t helloworldapi .```
 
 --Create DB directory
-`mkdir my-db`
+```mkdir my-db```
 
 --Bring up the application
-`docker compose up`
+```docker compose up```
 
 --one time DB set up
 --log into the mysql DB and use the following commands to create tables:
