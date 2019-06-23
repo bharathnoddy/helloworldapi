@@ -1,4 +1,4 @@
-version: '3.3'
+version: '2.1'
 services:
   helloworlddb:
     container_name: helloworlddb
@@ -19,7 +19,10 @@ services:
     networks:
       - restapi
     volumes:
-      - my-db:/var/lib/mysql
+      - ./my-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+
 
 
   helloworldapi:
@@ -30,11 +33,10 @@ services:
     networks:
       - restapi
     depends_on:
-      - helloworlddb
+      helloworlddb: { condition: service_healthy }
 
 volumes:
   my-db:
-    driver: local
 
 
 networks:

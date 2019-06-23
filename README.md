@@ -1,15 +1,15 @@
 ## Usage
---Build the application image
-```docker build -t helloworldapi .```
+--Build the application image  ans set up the DB
+```
+git clone https://github.com/bharathnoddy/helloworldapi.git
+docker build -t helloworldapi .
+mkdir my-db
+docker-compose up
 
---Create DB directory
-```mkdir my-db```
+```
 
---Bring up the application
-```docker compose up```
 
---one time DB set up
---log into the mysql DB and use the following commands to create tables:
+### One time DB steps
 ```
 create table username
 CREATE TABLE username (username VARCHAR(20) PRIMARY KEY, dob DATE);
