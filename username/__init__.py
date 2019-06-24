@@ -17,7 +17,7 @@ db_name = config['DEFAULT']['dbname']
 
 
 today = date.today()
-
+### DB connection
 db = pymysql.connect(db_host,db_user,db_pass,db_name)
 
 app = Flask(__name__)
@@ -30,6 +30,7 @@ def hello():
 @app.route('/hello/<username>', methods = ['POST' , 'GET'])
 
 ########Post request code
+
 def api_message(username):
     if request.method == 'POST' and username.isalpha():
         dob = request.json['dob']
@@ -37,6 +38,7 @@ def api_message(username):
         cursor = db.cursor() # connect to database
         result = cursor.execute(sql)
 
+####If username is a new entry
         if result == 0:
             sql = 'INSERT INTO  username (username , dob ) VALUES (%s, %s)'
             val = (username , dob)
@@ -45,6 +47,7 @@ def api_message(username):
             db.commit()
             #message = "Filed with username "+username+" added to the DB"
             return('', 204)
+## If username exists the update
         else:
             sql = 'REPLACE INTO  username (username , dob ) VALUES (%s, %s)'
             val = (username , dob)
