@@ -34,4 +34,5 @@ The architecture .jpg answers question no. 2 and which shows the basic AWS desig
 
 
 ## Deployment config:
-This answers question no. 2 The chart folder and the Jenkins file defines how the Jenkins will make use of helm chart to deploy this application. It will be Rolling update so no downtime expected
+This answers question no. 3 The deploy direcory and the Jenkins file defines how the Jenkins will make use of helm chart to deploy this application. It will be Rolling update so no downtime expected.
+`NOTE : The deployment templated , jenkins file are not tested and is a basic one and we can modify this as per out requirement`
