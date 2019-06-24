@@ -8,16 +8,19 @@ docker-compose up
 
 ```
 
+`Application should be up at  localhost port 80 but on time DB steps needs to be taken care of before PUT or GET `
+`http://localhost`
+
 
 ### One time DB steps
 ```
---Login to the mysql docekr instance and fire the following commands
+--Login to the mysql docker instance and fire the following commands
 mysql -u admin -p       (get the password for the docker-compose file)
 create table username
 CREATE TABLE username (username VARCHAR(20) PRIMARY KEY, dob DATE);
 ```
 
-`Application should be up at  localhost port 80`
+
 
 ##  Adding or updating entry
 `POST /localhost/hello/<username> { "dob" : "1985-01-20" }`
