@@ -1,0 +1,65 @@
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: {{ template "helloworld.fullname" .}}-deployment
+  namespace: {{ .Values.NAMESPACE }}
+spec:
+  template:
+    metadata:
+      labels:
+        name: {{ template "helloworld.fullname" .}}
+    spec:
+      serviceAccountName: {{ .Values.SERVICE_ACCOUNT }}
+      automountServiceAccountToken: false
+      containers:
+        - name: {{ template "hellowworld.fullname" .}}
+          image: {{ .Values.IMAGE }}:{{ .Values.VERSION}}.{{ .Values.BUILDNUMBER}}
+          ports:
+            - containerPort: 80
+              protocol: "TCP"
+          env:
+            - name: ENV
+              value: prod
+          resources:
+            limits:
+              memory: {{ .Values.MEM }}
+            requests:
+              cpu: {{ .Values.CPU }}
+              memory: {{ .Values.MEM }}
+            livenessProbe:
+              httpGet:
+                path: /
+                port: 80
+              initialDelaySeconds: 30
+              timeoutSeconds: 10
+
+
+          volumeMounts:
+            - mountPath: {{ .Values.MOUNT_PATH }}
+              name: logvol
+
+
+          - name: filebeat
+            image: {{ .Values.LMM_IMAGE }}
+
+            resources:
+              limits:
+                memory: {{ .Values.LMM_MEM }}
+              requests:
+                cpu: {{ .Values.LMM_CPU }}
+                memory: {{ .Values.LMM_MEM }}
+            volumeMounts:
+              - mountPath: {{ .Values.MOUNT_PATH }}
+                name: logvol
+
+
+
+      imagePullSecrets:
+        - name: {{ .Values.SERVICE_ACCOUNT }}
+      volumes:
+        - name: logvol
+          emptyDir: {}
+
+
+  replicas: 1

@@ -27,3 +27,11 @@ CREATE TABLE username (username VARCHAR(20) PRIMARY KEY, dob DATE);
 
 ## Getting username info
 `GET /localhost/hello/<username>`
+
+
+## Architecture
+The architecture .jpg answers question no. 2 and which shows the basic AWS design of the components and the kubernetes architecture
+
+
+## Deployment config:
+This answers question no. 2 The chart folder and the Jenkins file defines how the Jenkins will make use of helm chart to deploy this application. It will be Rolling update so no downtime expected

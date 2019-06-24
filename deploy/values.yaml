@@ -1,0 +1,11 @@
+CPU: 1000m
+MEM: 2Gi
+MOUNT_PATH: /var/log/helloworld
+SERVICE_ACCOUNT: essre
+IMAGE: <repo lcoation >/helloworld
+VERSION: "1.0"
+BUILDNUMBER: latest
+LMM_CPU: 1000m
+LMM_MEM: 250Mib
+LMM_IMGAGE: <image repo of the filebeat container with filebeat config>
+NAMESPACE: helloworld
